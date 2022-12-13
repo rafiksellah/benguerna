@@ -1,0 +1,59 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Video index{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Liste Videos</h1>
+            </div> 
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Liste Videos</li>
+                </ol>
+            </div> 
+            </div> 
+        </div> 
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <a class="btn btn-success mt-2 mb-2" href="{{ path('app_admin_video_new') }}">Create new</a>
+            <table id="example1" class="table table-striped mt-4">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Couvert</th>
+                        <th>Url</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for video in videos %}
+                    <tr>
+                        <td>{{ video.id }}</td>
+                        <td>
+                            <img width="150" src="{{asset('uploads/couverts/'~video.couvert)}}" alt="">
+                        </td>
+                        <td>{{ video.url }}</td>
+                        <td>
+                            <a class="btn btn-info" href="{{ path('app_admin_video_show', {'id': video.id}) }}">show</a>
+                            <a class="btn btn-success" href="{{ path('app_admin_video_edit', {'id': video.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div> 
+    </section>
+
+</div>
+{% endblock %}

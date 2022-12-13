@@ -1,0 +1,70 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}New Client{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Nouvelle Client</h1>
+                </div> 
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Ajouter Client</li>
+                    </ol>
+                </div> 
+            </div> 
+        </div> 
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+                {{ form_start(form) }}
+                    <div class="row">
+                        <div class="col-md-6 mx-auto">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Ajouter Client</h3>
+                            </div>
+                            <form>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="name">Nom</label>
+                                    {{form_widget(form.nom)}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Nationality</label>
+                                    {{form_widget(form.nationality)}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="File">Ajouter Photo</label>
+                                    {{form_widget(form.photo)}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Facebook URL</label>
+                                    {{form_widget(form.facebookUrl)}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Instagram URL</label>
+                                    {{form_widget(form.instagramUrl)}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Youtube URL</label>
+                                    {{form_widget(form.youtubeUrl)}}
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                {{ form_end(form) }}
+        </div> 
+    </section>
+    {{ include('admin/client/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_client_index') }}">back to list</a>
+{% endblock %}

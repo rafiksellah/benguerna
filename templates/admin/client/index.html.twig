@@ -1,0 +1,68 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Client index{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Liste Clients</h1>
+            </div> 
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Liste Clients</li>
+                </ol>
+            </div> 
+            </div> 
+        </div> 
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <a class="btn btn-success mt-2 mb-2" href="{{ path('app_admin_client_new') }}">Create new</a>
+            <table id="example1" class="table table-striped mt-4">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Photo</th>
+                        <th>Nationality</th>
+                        <th>FacebookUrl</th>
+                        <th>YoutubeUrl</th>
+                        <th>InstagramUrl</th>
+                        <th>Actions Client</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for client in clients %}
+                    <tr>
+                        <tr>
+                        <td>{{ client.id }}</td>
+                        <td>{{ client.nom }}</td>
+                        <td>
+                            <img width="100" src="{{asset('uploads/photos/'~client.photo)}}" alt="">
+                        </td>
+                        <td>{{ client.nationality }}</td>
+                        <td>
+                            <a href="{{ client.facebookUrl }}" target="_blank">Facebook</a>
+                        </td>
+                        <td><a href="{{ client.instagramUrl }}" target="_blank">Instagram</a></td>
+                        <td><a href="{{ client.youtubeUrl }}" target="_blank">Youtube</a></td>
+                        <td>
+                            <a class="btn btn-info" href="{{ path('app_admin_client_show', {'id': client.id}) }}">show</a>
+                            <a class="btn btn-success" href="{{ path('app_admin_client_edit', {'id': client.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div> 
+    </section>
+ </div>   
+{% endblock %}
