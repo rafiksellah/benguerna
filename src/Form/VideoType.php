@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class VideoType extends AbstractType
 {
@@ -16,9 +17,13 @@ class VideoType extends AbstractType
             ->add('couvert', FileType::class,[
                 'label' => false,
                 'mapped' => false,
-                'required' => false
+                'required' => true,
+                'attr' => ['class' => 'form-control']
             ])
-            ->add('url')
+            ->add('url',TextType::class,
+            [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Url']
+            ])
         ;
     }
 

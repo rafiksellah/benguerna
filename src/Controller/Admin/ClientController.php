@@ -30,11 +30,13 @@ class ClientController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $image = $form->get('photo')->getData();
-            $fichier = md5(uniqid()).'.'.$image->guessExtension();
-            $image->move(
-                $this->getParameter('photo_directory'),
-                $fichier
-            );
+            if (isset($image)) {
+                $fichier = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move(
+                    $this->getParameter('photo_directory'),
+                    $fichier
+                );
+            }
 
             $client->setPhoto($fichier);
 
